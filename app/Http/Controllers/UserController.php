@@ -68,7 +68,6 @@ class UserController extends Controller
         Session::flush();
         Auth::guard('admin')->logout();
         Auth::login($user);
-
         return $this->authenticated($request, $user);
     }
 
