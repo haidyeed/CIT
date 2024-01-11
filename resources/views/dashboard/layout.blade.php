@@ -105,7 +105,7 @@
     </div>    
 </div>
 
-<!-- Start Main project js, jQuery, Bootstrap -->  --}}
+<!-- Start Main project js, jQuery, Bootstrap -->
 <script src="{{ asset('dashboard/assets/bundles/lib.vendor.bundle.js') }}"></script>
 
 <!-- Start all plugin js -->
