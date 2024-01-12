@@ -1,60 +1,55 @@
-<!doctype html>
-<html lang="en">
 
-<body>
+@extends('auth.layout')
 
-    <header class="p-3 bg-dark text-white">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+@section('content')
 
-            @auth
-              {{auth()->user()->name}}
-              <p>{{ Auth::user()->email }}</p>
+<div class="text-center">
+  <a class="header-brand" ><i class="fa fa-gift brand-logo"></i></a>
 
-              <div class="text-end">
-                <a href="{{ route('user.logout') }}" class="btn btn-outline-light me-2">Logout</a>
-              </div>
-            @endauth
+  @auth
+  <div class="card-title mt-3">Hi {{auth()->user()->name}}, You are now logged in as a User</div>
 
-            @guest
-              @if(Auth::guard('admin')->check())
-              {{auth()->guard('admin')->user()->name}}
-              <p>{{ Auth::guard('admin')->user()->email }}</p>
+  {{auth()->user()->name}}
+  <p>{{ Auth::user()->email }}</p>
 
-              <div class="text-end">
-                <a href="{{ route('admin.logout') }}" class="btn btn-outline-light me-2">Logout</a>
-              </div>
-              @else
-                <div class="text-end">
-                  <a href="{{ route('user.login') }}" class="btn btn-outline-light me-2">Login</a>
-                  <a href="{{ route('user.register') }}" class="btn btn-warning">Sign-up</a>
-                </div>
-              @endif
-            @endguest
-        </div>
-      </div>
-    </header>
+    <a href="{{ route('user.logout') }}">Logout</a>
 
-    <main class="container">
+    <div class="bg-light p-5 rounded">
+      <h1>User</h1>
+      <p class="lead">Only authenticated users can access this section.</p>
+    </div>
+  @endauth
+
+  @guest
+  @if(Auth::guard('admin')->check())
+  <div class="card-title mt-3">Hi {{auth()->guard('admin')->user()->name}}, You are now logged in as an Admin</div>
+  {{auth()->guard('admin')->user()->name}}
+  <p>{{ Auth::guard('admin')->user()->email }}</p>
+
+  <a href="{{ route('dashboard') }}">View Dashboard</a>
+  <p> OR </p>
+  <a href="{{ route('admin.logout') }}">Logout</a>
 
         <div class="bg-light p-5 rounded">
-            @auth
-            <h1>Authenticated User</h1>
-            <p class="lead">Only authenticated users can access this section.</p>
-            @endauth
-
-            @guest
-              @if(Auth::guard('admin')->check())
-              <h1>Authenticated Admin</h1>
+              <h1>Admin</h1>
               <p class="lead">Only authenticated admins can access this section.</p>
-              @else
-                <h1>Guest Homepage</h1>
-                <p class="lead">Your viewing the home page as a guest. Please login to view the restricted data.</p>
-              @endif
-            @endguest
         </div>
 
-    </main>
+  @else
+      <div class="card-title mt-3">Hi, You can login or signup and have an account</div>
 
-  </body>
-</html>
+        <a href="{{ route('user.login') }}">Sign in</a>
+        <p> OR </p>
+        <a href="{{ route('user.register') }}">Create an account</a>
+        <p> OR </p>
+        <p> have an admin account ? <a href="{{ route('admin.login') }}">Sign in as Admin</a></p>
+    
+        <div class="bg-light p-5 rounded">
+              <h1>Guest</h1>
+              <p class="lead">You are viewing the home page as a guest.<br> Please login to view the restricted data.</p>
+        </div>
+  @endif
+@endguest
+
+
+@endsection

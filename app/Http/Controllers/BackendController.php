@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\{Admin, User};
+
 class BackendController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard.index');
+        $admins = Admin::select('id', 'name')->get();
+        $users = User::select('id', 'name')->get();
+        return view('dashboard.index', compact('admins', 'users'));
     }
 
 }
