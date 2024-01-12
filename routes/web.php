@@ -34,8 +34,6 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/userhome', [UserController::class, 'userHome'])->name('user.home');
-    Route::get('/shop', [UserController::class, 'shop'])->name('shop');
     Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
 });
 
@@ -45,7 +43,6 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/adminmaker', [AdminController::class, 'adminMaker'])->name('admin.make');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function () {
-    Route::get('/home', [AdminController::class, 'adminHome'])->name('admin.home');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [BackendController::class, 'dashboard'])->name('dashboard');
 

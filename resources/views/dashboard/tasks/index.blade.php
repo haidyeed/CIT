@@ -32,8 +32,8 @@
                                     <th>#</th>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Assigned By</th>
-                                    <th>Assigned To</th>
+                                    <th>Admin Name</th>
+                                    <th>Assigned Name</th>
                                     <th>Creating Date</th>
                                     <th>Actions</th>
                                 </tr>

@@ -47,14 +47,12 @@ class TaskController extends Controller
         $response = false;
         $task = Task::find($id);
 
-        if ($task) {
-            if ($task->delete()) {
-                $response = true;
-            }
+        if ($task && $task->delete()) {
+            $response = true;
         }
+
         echo json_encode($response);
         exit;
     }
-
 
 }

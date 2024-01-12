@@ -30,10 +30,8 @@ class UserController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::create($request->validated());
-
         auth()->login($user);
-
-        return redirect('/userhome')->with('success', "Account successfully registered.");
+        return redirect('/')->with('success', "Account successfully registered.");
     }
 
 
@@ -91,9 +89,7 @@ class UserController extends Controller
     public function logout()
     {
         Session::flush();
-
         Auth::logout();
-
         return redirect('login');
     }
 
@@ -102,13 +98,4 @@ class UserController extends Controller
         return view('auth.home');
     }
 
-    public function userHome()
-    {
-        return view('auth.user-home');
-    }
-
-    public function shop()
-    {
-        return view('shop');
-    }
 }

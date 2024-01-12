@@ -28,27 +28,30 @@
             </div>
 
             <div class="col-lg-6 col-md-6">
-                <label class="col-md-3 col-form-label">Assigned By <span class="text-danger">*</span></label>
-                <div class="form-group">
-                    <select class="form-control custom-select" name="assigned_by_id">
-                        <option value=0 selected>Choose Creator</option>
-
-                        @forelse($admins as $admin)
-                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                        @empty
-                        @endforelse
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6">
-                <label class="col-md-3 col-form-label">Assigned To <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Assigned User <span class="text-danger">*</span></label>
                 <div class="form-group">
                     <select class="form-control custom-select" name="assigned_to_id">
                         <option value=0 selected>Choose Assignee</option>
 
                         @forelse($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+
+            {{--  Another way we can send admin id in a hidden input 
+            by getting auth guard admin id 
+            and remove this drop down list   --}}
+            <div class="col-lg-6 col-md-6">
+                <label class="col-md-3 col-form-label">Admin Name <span class="text-danger">*</span></label>
+                <div class="form-group">
+                    <select class="form-control custom-select" name="assigned_by_id">
+                        <option value=0 selected>Choose Creator</option>
+
+                        @forelse($admins as $admin)
+                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
                         @empty
                         @endforelse
                     </select>
