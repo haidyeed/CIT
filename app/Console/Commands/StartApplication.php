@@ -34,17 +34,19 @@ class StartApplication extends Command
 
             exec('cp .env.example .env');
 
-            DB::Connection('mysql')->statement('CREATE DATABASE CIT');
-
             Artisan::call('key:generate');
-
-            putenv('COMPOSER_HOME=' . __DIR__ . '/vendor/bin/composer');
 
             //TODO:
             // call 'composer install' command programmatically
 
-            // Artisan::call('migrate');
+            DB::Connection('mysql')->statement('CREATE DATABASE CIT');
+
+            Artisan::call('migrate');
+
             Artisan::call('schedule:work'); //to run cron job for updating statistics table
+
+            Artisan::call('serve');
+
             return Command::SUCCESS;
 
         } catch (\Exception $e) {
