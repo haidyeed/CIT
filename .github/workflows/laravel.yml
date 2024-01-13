@@ -48,6 +48,8 @@ jobs:
       run: sudo /etc/init.d/mysql start
     - name: Migrate and Seed Database
       run: |
+        php artisan cache:clear
+        php artisan config:clear
         php artisan migrate
         php artisan db:seed
     - name: Execute tests (Unit and Feature tests) via PHPUnit
