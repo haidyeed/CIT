@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, AdminController, BackendController};
-use App\Http\Controllers\Dashboard\TaskController;
+use App\Http\Controllers\{UserController, AdminController};
+use App\Http\Controllers\Dashboard\{TaskController, BackendController};
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,7 @@ Route::get('/adminmaker', [AdminController::class, 'adminMaker'])->name('admin.m
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function () {
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [BackendController::class, 'dashboard'])->name('dashboard');
+    Route::get('/statistics', [BackendController::class, 'statistics'])->name('statistics');
 
     Route::resources([
         'tasks' => TaskController::class,

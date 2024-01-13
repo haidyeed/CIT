@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('dashboard/assets/plugins/bootstrap/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('dashboard/assets/plugins/sweetalert/sweetalert.css') }}">
 
+
 <!-- Core css -->
 <link rel="stylesheet" href="{{ asset('dashboard/assets/css/style.min.css') }}"/>
 
@@ -57,6 +58,7 @@
                         <li class="g_heading">Home</li>
                         <li><a href="{{ route('tasks.index') }}"><i class="fa fa-list-ul"></i><span>List Tasks</span></a></li>
                         <li><a href="{{ route('dashboard') }}"><i class="fa fa-credit-card"></i><span>Create Task</span></a></li>
+                        <li><a href="{{ route('statistics') }}"><i class="fa fa-dashboard"></i><span>Statistics</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -110,6 +112,9 @@
 
 <!-- Start all plugin js -->
 <script src="{{ asset('dashboard/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/bundles/knobjs.bundle.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/chart/knobjs.js') }}"></script>
+
 
 <!-- Start project main js  and page js -->
 <script src="{{ asset('dashboard/assets/js/core.js') }}"></script>
