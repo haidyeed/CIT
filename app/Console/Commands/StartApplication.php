@@ -34,10 +34,10 @@ class StartApplication extends Command
 
             exec('cp .env.example .env');
 
-            Artisan::call('key:generate');
-
             //TODO:
             // call 'composer install' command programmatically
+
+            Artisan::call('key:generate');
 
             DB::Connection('mysql')->statement('CREATE DATABASE CIT');
 
