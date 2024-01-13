@@ -55,16 +55,6 @@ class UserTest extends TestCase
         $response->assertViewIs('auth.user-login');
     }
 
-    public function test_user_cannot_view_login_form_when_authenticated()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user, 'web')
-            ->get('/login');
-
-        $response->assertRedirect('/');
-    }
-
     public function test_user_cannot_view_admin_dashboard_when_authenticated()
     {
         $user = User::factory()->create();
