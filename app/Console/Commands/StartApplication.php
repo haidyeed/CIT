@@ -45,8 +45,6 @@ class StartApplication extends Command
 
             Artisan::call('schedule:work'); //to run cron job for updating statistics table
 
-            Artisan::call('serve');
-
             return Command::SUCCESS;
 
         } catch (\Exception $e) {
