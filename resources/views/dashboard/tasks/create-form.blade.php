@@ -17,13 +17,13 @@
             <div class="col-lg-4 col-md-12">
                 <label class="col-md-3 col-form-label">Title <span class="text-danger">*</span></label>
                 <div class="form-group">
-                    <input type="text" name="title" class="form-control" placeholder="Task Title">
+                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" placeholder="Task Title">
                 </div>
             </div>
             <div class="col-lg-12 col-md-12">
                 <label class="col-md-3 col-form-label">Description <span class="text-danger">*</span></label>
                 <div class="form-group">
-                    <textarea type="text" name="description" class="form-control" rows="4"></textarea>
+                    <textarea type="text" name="description" class="form-control" rows="4">{{{ old('description') }}}</textarea>
                 </div>
             </div>
 

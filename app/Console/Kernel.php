@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Jobs\UpdateStatistics;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,7 +18,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //running via php artisan schedule:work
-        $schedule->job(new UpdateStatistics)->daily();
+        try {
+
+            $schedule->job(new UpdateStatistics)->daily();
+
+        } catch (\Exception $e) {
+            Log::channel('jobs')->info("job scheduling failed, " . $e->getMessage());
+        }
     }
 
     /**

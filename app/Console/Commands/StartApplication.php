@@ -4,23 +4,24 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
-class CreateDatabase extends Command
+class StartApplication extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'db:create';
+    protected $signature = 'app:start';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a database';
+    protected $description = 'Start the application';
 
     /**
      * Execute the console command.
@@ -31,12 +32,25 @@ class CreateDatabase extends Command
     {
         try {
 
+            exec('cp .env.example .env');
+
             DB::Connection('mysql')->statement('CREATE DATABASE CIT');
+
+            Artisan::call('key:generate');
+
+            putenv('COMPOSER_HOME=' . __DIR__ . '/vendor/bin/composer');
+
+            //TODO:
+            // call 'composer install' command programmatically
+
+            // Artisan::call('migrate');
+            Artisan::call('schedule:work'); //to run cron job for updating statistics table
             return Command::SUCCESS;
 
         } catch (\Exception $e) {
             Log::channel('commands')->info("command failed, " . $e->getMessage());
         }
+
     }
 
 }

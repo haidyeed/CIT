@@ -40,8 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 //Dashboard routes
 
-Route::get('/adminmaker', [AdminController::class, 'adminMaker'])->name('admin.make');
-
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function () {
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [BackendController::class, 'dashboard'])->name('dashboard');
