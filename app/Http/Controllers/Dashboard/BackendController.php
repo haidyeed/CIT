@@ -16,6 +16,8 @@ class BackendController extends Controller
 
     public function statistics()
     {
+        //if query requires more logic or used in more places
+        //it may be called from a service not controller
         $topUsers = Statistic::select('user_id', 'tasks_count')->take(10)->get();
         return view('dashboard.tasks.statistics', compact('topUsers'));
     }

@@ -85,7 +85,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
         ],
 
@@ -116,6 +116,24 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
+        ],
+
+        'jobs' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/jobs/job.log'),
+            'level' => 'debug',
+            'permission' => 0775,
+            'days' => 2,
+
+        ],
+
+        'commands' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/commands/command.log'),
+            'level' => 'debug',
+            'permission' => 0775,
+            'days' => 2,
+
         ],
     ],
 

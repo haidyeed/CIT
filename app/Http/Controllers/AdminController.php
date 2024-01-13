@@ -2,23 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use Illuminate\Contracts\Support\Renderable;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\{Auth, Session};
 
 class AdminController extends Controller
 {
-    public function adminMaker()
-    {
-        Admin::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => 12345678,
-        ]);
-        return 'Admin created successflly';
-    }
-
     /**
      * Display login page.
      * 
